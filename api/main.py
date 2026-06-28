@@ -7,7 +7,7 @@ from statistics import mean
 app = FastAPI()
 
 # 1. CORS Policy: Replace with your specific allowed origin
-ALLOWED_ORIGIN = "https://your-assigned-origin.com" 
+ALLOWED_ORIGIN = "https://dash-emlbxz.example.com" 
 
 app.add_middleware(
     CORSMiddleware,
@@ -44,7 +44,7 @@ async def options_stats():
 async def get_stats(values: str):
     nums = [float(x) for x in values.split(",")]
     return {
-        "email": "your-email@iitm.ac.in",
+        "email": "23f3001819@ds.study.iitm.ac.in",
         "count": len(nums),
         "sum": sum(nums),
         "min": min(nums),
