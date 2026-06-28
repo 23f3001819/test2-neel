@@ -27,6 +27,18 @@ async def add_custom_headers(request: Request, call_next):
     response.headers["X-Process-Time"] = f"{process_time:.6f}"
     return response
 
+@app.options("/stats")
+async def options_stats():
+    return Response(
+        status_code=200,
+        headers={
+            "Access-Control-Allow-Origin": "https://dash-emlbxz.example.com",
+            "Access-Control-Allow-Methods": "GET, OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type, X-Request-ID",
+        }
+    )
+
+
 # 3. Stats Endpoint
 @app.get("/stats")
 async def get_stats(values: str):
