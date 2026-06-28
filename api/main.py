@@ -3,6 +3,7 @@ import uuid
 from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from statistics import mean
+from fastapi.responses import JSONResponse
 
 app = FastAPI()
 
@@ -15,6 +16,18 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.get("/ping")
+async def ping(request: Request):
+    # Check for existing X-Request-ID
+    req_id = request.headers.get("X-Request-ID", str(uuid.uuid4()))
+    
+    # Return in both body and header
+    return JSONResponse(
+        content={"X-Request-ID": req_id},
+        headers={"X-Request-ID": req_id}
+    )
 
 # 2. Middleware for Headers (X-Request-ID and X-Process-Time)
 @app.middleware("http")
