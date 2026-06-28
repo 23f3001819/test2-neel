@@ -39,3 +39,15 @@ async def get_stats(values: str):
         "max": max(nums),
         "mean": mean(nums)
     }
+
+@app.options("/{path:path}")
+async def options_handler(path: str):
+    # This specifically handles preflight requests
+    return Response(
+        status_code=200,
+        headers={
+            "Access-Control-Allow-Origin": "https://dash-emlbxz.example.com",
+            "Access-Control-Allow-Methods": "GET, OPTIONS",
+            "Access-Control-Allow-Headers": "*",
+        }
+    )
