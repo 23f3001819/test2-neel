@@ -1,0 +1,9 @@
+{
+  "name": "ga6-playwright-scraper",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "playwright": "^1.50.0",
+    "seedrandom": "^3.0.5"
+  }
+}
